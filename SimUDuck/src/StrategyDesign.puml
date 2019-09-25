@@ -1,0 +1,71 @@
+@startuml
+package client #DDD{
+    abstract class Duck {
+        flyBehavior: FlyBehavior
+        quackBehavior: QuackBehavior
+        performFly()
+        performQuack()
+        swim()
+        display()
+    }
+    class MalardDuck{
+        display()
+    }
+    class ModelDuck{
+        display()
+    }
+}
+package "Encapsulated fly behavior" as N1 #DDD{
+    interface FlyBehavior{
+        fly()
+    }
+    class FlyWithWings {
+        fly()
+    }
+    class FlyNoWay {
+        fly()
+    }
+    class FlyRocketPowered{
+        fly()
+    }
+}
+package "Encapsulated quack behavior" as N2 #DDD{
+    interface QuackBehavior{
+        quack()
+    }
+    class Quack{
+        quack()
+    }
+    class MuteQuack {
+        quack()
+    }
+    class Squeak {
+        quack()
+    }
+}
+Duck --> FlyBehavior
+Duck --> QuackBehavior
+Duck <|-- MalardDuck
+Duck <|-- ModelDuck
+FlyBehavior <|.. FlyWithWings
+FlyBehavior <|.. FlyNoWay
+FlyBehavior <|.. FlyRocketPowered
+QuackBehavior <|.. Quack
+QuackBehavior <|.. MuteQuack
+QuackBehavior <|.. Squeak
+note "Strategy Design Pattern" as main
+note as N0
+Client makes use of an
+encapsulated family of algorithms
+for both flying and quacking
+end note
+note as familyOfAlgorithms
+Think of each
+set of behaviors
+as a family of
+algorithms
+endnote
+N0 .. client
+N1 .. familyOfAlgorithms
+N2 .. familyOfAlgorithms
+@enduml
