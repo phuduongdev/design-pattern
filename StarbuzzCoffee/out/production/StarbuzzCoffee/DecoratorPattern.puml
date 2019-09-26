@@ -1,0 +1,62 @@
+@startuml
+abstract class Component{
+    //some properties
+    abstract method()
+}
+
+
+class ConcreteComponent{
+    method()
+}
+note left
+The ConcreteComponent
+is the object we're going
+to dynamically add new
+behavior to.
+It extents Component
+end note
+abstract class Decorator{
+    method()
+}
+class ConcreteDecoratorA
+class ConcreteDecoratorB
+
+Component <|-- ConcreteComponent
+Component <|-- Decorator
+Component <-- Decorator
+Decorator <|-- ConcreteDecoratorB
+Decorator <|-- ConcreteDecoratorA
+
+note as n1
+Each component can be used on its
+own, or wrapped by a decorator
+
+Each decorator HAS-A
+(wraps) a component, which
+means the decorator has an
+instance variable that holds
+a reference to a component
+end note
+note right of Decorator
+Decorator implement the same
+interface or abstract class
+as the component they are
+going to decorate
+end note
+note left of ConcreteDecoratorA
+The ConcreteDecorator has an
+instance variable for the thing
+it decorate (the Component the
+Decorator wraps)
+end note
+note right of ConcreteDecoratorB
+Decorators can extend the
+state of the component.
+end note
+note bottom of ConcreteDecoratorB
+Decorators can add new methods; however, new
+behavior is typically added by doing computation
+before or after an existing method in the component
+end note
+
+@enduml
