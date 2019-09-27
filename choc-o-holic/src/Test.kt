@@ -1,0 +1,16 @@
+fun main(args: Array<String>) {
+    val instance = ChocolateBoiler.getInstance()
+    val instance2 = ChocolateBoiler.getInstance()
+    println("Original status: ")
+    println("empty is: ${instance.isEmpty()} and boiled is: ${instance.isBoiled()}")
+    instance2.fill()
+    println("After fill(): ")
+    println("empty is: ${instance.isEmpty()} and boiled is: ${instance.isBoiled()}")
+    instance2.boil()
+    println("After boil(): ")
+    println("empty is: ${instance.isEmpty()} and boiled is: ${instance.isBoiled()}")
+    instance2.drain()
+    println("After drain(): ")
+    println("empty is: ${instance.isEmpty()} and boiled is: ${instance.isBoiled()}")
+    println(instance === instance2)
+}
